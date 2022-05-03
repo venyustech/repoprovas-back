@@ -1,8 +1,6 @@
 import { prisma } from "../database.js";
 
 async function findByDiscipline(discipline) {
-    console.log(discipline)
-
     const terms = await prisma.term.findMany({
         include: {
             disciplines: {
