@@ -1,6 +1,6 @@
 import { prisma } from "../database.js";
 
-async function findByDiscipline(discipline: string) {
+async function findByDiscipline(discipline) {
     console.log(discipline)
 
     const terms = await prisma.term.findMany({
@@ -47,4 +47,29 @@ async function findByDiscipline(discipline: string) {
     return  termsRenaming 
 }
 
-export default { findByDiscipline };
+
+async function findByTeacher(teacherName) {
+  return prisma.teacherDiscipline.findMany({
+    include: {
+      teacher: true,
+      discipline: true,
+      tests: {
+        include: {
+          category: true,
+        },
+      },
+    },
+    where: {
+      teacher: {
+        name: teacherName,
+      },
+    },
+    orderBy: {
+      teacher: {
+        name: "asc",
+      },
+    },
+  });
+}
+
+export default { findByDiscipline, findByTeacher };

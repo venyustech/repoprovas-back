@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import disciplineService from "../services/disciplineService.js";
 import testService from "../services/testService.js";
 
 async function find(req: Request, res: Response) {

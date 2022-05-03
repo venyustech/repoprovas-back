@@ -1,10 +1,19 @@
 import { Request, Response } from "express";
-import disciplineService from "../services/disciplineService.js";
+import searchByService from "../services/searchByService.js";
 
-async function searchByDiscipline(req: Request, res: Response) {
+async function searchBy(req: Request, res: Response) {
     const disciplineName = req.query.discipline;
-    const disciplines = await disciplineService.findDisciplines(disciplineName);
-    res.send({ disciplines });
+    const teacherName = req.query.teacher;
+
+    if(disciplineName){
+        const searchByDiscipline = await searchByService.searchByDisciplines(disciplineName)
+        return res.send({ searchByDiscipline });
+    }
+    if(teacherName){
+        const searchByteacher = await searchByService.searchByTeacher(teacherName);
+       return res.send({ searchByteacher });
+    }
+
 }
 
-export default { searchByDiscipline };
+export default { searchBy };

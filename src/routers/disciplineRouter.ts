@@ -4,6 +4,6 @@ import { ensureAuthenticatedMiddleware } from "../middlewares/ensureAuthenticate
 
 const disciplineRouter = Router();
 
-disciplineRouter.get("/disciplines/searchBy", ensureAuthenticatedMiddleware, disciplineController.searchByDiscipline);
+disciplineRouter.get("/disciplines/searchBy", ensureAuthenticatedMiddleware, disciplineController.searchBy);
 
 export default disciplineRouter;
